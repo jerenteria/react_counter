@@ -1,34 +1,33 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import Counter from './components/Counter/Counter.jsx';
-import Header from './components/Header.jsx';
-import { log } from './log.js';
+import Counter from "./components/Counter/Counter.jsx";
+import Header from "./components/Header.jsx";
+import { log } from "./log.js";
+import ConfigureCounter from "./components/Counter/ConfigureCounter.jsx";
 
 function App() {
-  log('<App /> rendered');
+  log("<App /> rendered");
 
-  const [enteredNumber, setEnteredNumber] = useState(0);
   const [chosenCount, setChosenCount] = useState(0);
 
-  function handleChange(event) {
-    setEnteredNumber(+event.target.value);
-  }
-
-  function handleSetClick() {
-    setChosenCount(enteredNumber);
-    setEnteredNumber(0);
+  // takes in the number that the user inputs we called it newCount, used to update chosenCount with new value
+  function handleSetCount(newCount) {
+    // sets the number that the user inputs(named newCount) as state in setChosenCount, if there is already a value there set it to the user inputted value
+    setChosenCount(newCount);
   }
 
   return (
     <>
       <Header />
+
       <main>
-        <section id="configure-counter">
-          <h2>Set Counter</h2>
-          <input type="number" onChange={handleChange} value={enteredNumber} />
-          <button onClick={handleSetClick}>Set</button>
-        </section>
-        <Counter initialCount={chosenCount} />
+        {/* set the prop using "onSet"(whatever number user inputs) the value of this prop is in handleSetCount function called "newCount", we are passing this function 
+        called "handleSetCount" using "onSet" prop to ConfigureCounter.jsx
+        does not update the state with every key stroke like in ConfigureCounter.jsx bc state changes and reexecutions of child components dont trigger parent component executions
+    */}
+        <ConfigureCounter onSet={handleSetCount} />
+        {/* Counter.jsx takes in the value inputted from user as initialCount and inputs it to the chosenCount state above */}
+        <Counter initalCount={chosenCount} />
       </main>
     </>
   );

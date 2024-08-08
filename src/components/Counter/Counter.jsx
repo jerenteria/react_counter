@@ -28,6 +28,7 @@ function isPrime(number) {
 }
 
 // memo() compares prop values(if old prop val and new prop val are equal, Counter function will not execute; only executes if initialCount changes)
+// initalCount is from App.jsx which is the new value the user set in ConfigureCounter.jsx 
 const Counter = memo(function Counter({ initialCount }) {
   log('<Counter /> rendered', 1);
   const initialCountIsPrime = isPrime(initialCount);

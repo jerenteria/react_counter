@@ -27,7 +27,7 @@ function App() {
     */}
         <ConfigureCounter onSet={handleSetCount} />
         {/* Counter.jsx takes in the value inputted from user as initialCount and inputs it to the chosenCount state above */}
-        <Counter initalCount={chosenCount} />
+        <Counter initialCount={chosenCount} />
       </main>
     </>
   );
